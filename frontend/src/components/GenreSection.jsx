@@ -2,46 +2,55 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
+import actionImage from "../assets/action.jpg";
+import sciFiImage from "../assets/scifi.png";
+import dramaImage from "../assets/drama.jpg";
+import comedyImage from "../assets/comedy.png";
+import horrorImage from "../assets/horror.png";
+import animationImage from "../assets/animation.png";
+
 const genres = [
   {
     id: 28,
+    id: 28,
     name: "Action",
-    image:
-      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba",
+    image: actionImage,
   },
   {
     id: 878,
+    id: 878,
     name: "Sci-Fi",
-    image:
-      "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c",
+    image: sciFiImage,
   },
   {
     id: 18,
+    id: 18,
     name: "Drama",
-    image:
-      "https://images.unsplash.com/photo-1513106580091-1d82408b8cd6",
+    image: dramaImage,
   },
   {
     id: 35,
+    id: 35,
     name: "Comedy",
-    image:
-      "https://images.unsplash.com/photo-1518998053901-5348d3961a04",
+    image: comedyImage,
   },
   {
     id: 27,
+    id: 27,
     name: "Horror",
-    image:
-      "https://images.unsplash.com/photo-1505685296765-3a2736de412f",
+    image: horrorImage,
   },
   {
     id: 16,
+    id: 16,
     name: "Animation",
-    image:
-      "https://images.unsplash.com/photo-1478720568477-152d9b164e26",
+    image: animationImage,
   },
 ];
 
 const GenreSection = () => {
+  const navigate = useNavigate();
+
   const navigate = useNavigate();
 
   return (
@@ -61,13 +70,19 @@ const GenreSection = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
           {genres.map((genre) => (
-
             <motion.div
+              key={genre.id}
               key={genre.id}
               whileHover={{
                 y: -10,
                 scale: 1.03,
+                y: -10,
+                scale: 1.03,
               }}
+              transition={{ duration: 0.3 }}
+              onClick={() =>
+                navigate(`/search?genre=${genre.id}`)
+              }
               transition={{ duration: 0.3 }}
               onClick={() =>
                 navigate(`/search?genre=${genre.id}`)
@@ -80,9 +95,15 @@ const GenreSection = () => {
                 cursor-pointer
                 group
                 shadow-xl
+                relative
+                h-64
+                rounded-3xl
+                overflow-hidden
+                cursor-pointer
+                group
+                shadow-xl
               "
             >
-
               <img
                 src={genre.image}
                 alt={genre.name}
@@ -97,7 +118,6 @@ const GenreSection = () => {
               />
 
               {/* Overlay */}
-
               <div
                 className="
                   absolute
@@ -112,7 +132,6 @@ const GenreSection = () => {
               />
 
               {/* Content */}
-
               <div
                 className="
                   absolute
@@ -123,7 +142,6 @@ const GenreSection = () => {
                   p-8
                 "
               >
-
                 <h3 className="text-4xl font-bold hero-title">
                   {genre.name}
                 </h3>
@@ -146,11 +164,8 @@ const GenreSection = () => {
 
                   <ArrowRight size={18} />
                 </div>
-
               </div>
-
             </motion.div>
-
           ))}
 
         </div>
